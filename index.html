@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Style Caps | Catálogo Premium</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+    <!-- Overlay para el carrito -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <!-- Barra de anuncios / Marquee -->
+    <div class="announcement-bar">
+        <div class="marquee">
+            <span>🔥 ENVÍO GRATIS EN PEDIDOS PREMIUM 🔥 EDICIÓN LIMITADA: PHANTOM BLACK GOLD 🔥 DESCUENTOS EXCLUSIVOS ESTE FIN DE SEMANA 🔥</span>
+        </div>
+    </div>
+
+    <!-- Navegación -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-text">TOP STYLE</span><span class="logo-accent">CAPS</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#catalog" class="hover-underline-animation">Colección</a>
+            <a href="#about" class="hover-underline-animation">Nosotros</a>
+            <a href="#contact" class="hover-underline-animation">Contacto</a>
+        </nav>
+        <button id="cart-button" class="cart-button pulse-anim">
+            <i class="ph ph-shopping-cart"></i>
+            <span id="cart-badge" class="cart-badge">0</span>
+        </button>
+    </header>
+
+    <!-- Hero Section con formas animadas -->
+    <section class="hero reveal">
+        <!-- Elementos flotantes de fondo -->
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+
+        <div class="hero-content">
+            <h1 class="glitch" data-text="Eleva tu Estilo">Eleva tu <span class="text-gradient">Estilo</span></h1>
+            <p class="fade-in-up">Descubre nuestra colección premium de gorras con diseños exclusivos. Donde la oscuridad absoluta se encuentra con el brillo del oro y el fuego.</p>
+            <a href="#catalog" class="cta-button glow-on-hover">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <!-- Filtros de Categorías -->
+    <section class="filters-section reveal">
+        <div class="filters-container">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="gold">Edición Oro</button>
+            <button class="filter-btn" data-filter="fire">Edición Fuego</button>
+            <button class="filter-btn" data-filter="urban">Urbano</button>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section id="catalog" class="catalog-section">
+        <h2 class="section-title reveal">Colección <span class="text-gradient">Premium</span></h2>
+        <div id="product-grid" class="product-grid">
+            <!-- Los productos se inyectarán vía JavaScript -->
+        </div>
+    </section>
+
+    <!-- Banner Separador -->
+    <section class="promo-banner reveal">
+        <div class="promo-content">
+            <h2>Estilo Insuperable</h2>
+            <p>Seleccionamos cuidadosamente los modelos más exclusivos y demandados del mercado para que siempre luzcas increíble y destaques a donde vayas.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about" class="footer reveal">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>TOP STYLE<span class="logo-accent">CAPS</span></h2>
+                <p>La corona urbana para tu día a día.</p>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/top.style.cap/" target="_blank" title="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                <a href="https://www.tiktok.com/@top.style.caps?_r=1&_t=ZS-98vJRbTk3T3" target="_blank" title="TikTok"><i class="ph ph-tiktok-logo"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Top Style Caps. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Sidebar del Carrito -->
+    <aside id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Corona (Carrito)</h2>
+            <button id="close-cart" class="close-cart"><i class="ph ph-x"></i></button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Los items del carrito se inyectarán vía JavaScript -->
+            <div class="empty-cart-msg">Aún no has elegido tu corona.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="total-price">$0.00</span>
+            </div>
+            <button id="checkout-button" class="checkout-button glow-on-hover">Proceder al Pago</button>
+        </div>
+    </aside>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-modal" class="close-modal"><i class="ph ph-x"></i></button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <i id="modal-icon" class="ph img-placeholder"></i>
+                </div>
+                <div class="modal-details">
+                    <h2 id="modal-title" class="text-gradient">Nombre</h2>
+                    <p class="modal-category" id="modal-category">Categoría</p>
+                    <p class="modal-price" id="modal-price">$0.00</p>
+                    <p class="modal-description">Gorra premium con acabados de primera calidad, diseño estructurado de copa alta y visera curva. Ajuste perfecto para cualquier estilo.</p>
+                    <button id="modal-add-btn" class="cta-button glow-on-hover" style="width: 100%;">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificaciones Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
