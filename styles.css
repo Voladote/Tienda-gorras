@@ -132,15 +132,21 @@ body::before {
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
-.logo {
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+.header-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
+    transition: transform 0.3s ease;
 }
 
-.logo-accent {
-    color: var(--accent-gold);
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
 }
 
 .nav-links {
@@ -525,6 +531,26 @@ body::before {
     overflow: hidden;
     position: relative;
     cursor: pointer;
+}
+
+/* Efecto Holográfico / Scanline cabrón */
+.product-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(255, 215, 0, 0.1) 51%);
+    background-size: 100% 6px;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.product-card:hover .product-image-container::before {
+    opacity: 1;
 }
 
 .product-image-container::after {
@@ -1055,13 +1081,20 @@ body::before {
     flex-wrap: wrap;
     gap: 2rem;
 }
-.footer-logo h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.footer-logo-img {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.2));
 }
 .footer-logo p {
     color: var(--text-muted);
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 .social-links {
     display: flex;
