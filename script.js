@@ -1,30 +1,30 @@
 // Datos de las gorras extraídos automáticamente
 const rawData = `RichardBohz	26.5	https://res.cloudinary.com/wstd8asg/image/upload/v1786919379/Gorra_Rich_Bohz_26.50.jpg
 777	25	https://res.cloudinary.com/wstd8asg/image/upload/v1786919371/Gorra_777.jpg
-Gorra A (1)	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916390/Gorra_A_16_3.jpg
-Gorra A (2)	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916389/Gorra_A_16_2.jpg
-Gorra A(3)	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916387/Gorra_A_16_1.1.jpg
-Gorra A(4)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916386/Gorra_A_15.jpg
-GorraA(5)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916385/Gorra_A_15_3.jpg
-Gorra(A6)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916382/Gorra_A_15_2.jpg
-Gorra(A7)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916379/Gorra_A_15_1.1.jpg
-Gorra(A8)	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916377/Gorra_A_s_16.jpg
-Gorra(A9)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916376/Gorra_A_s_15.jpg
-Gorra(A10)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916374/Gorra_A_s_15_2.jpg
-Gorra(A11)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916373/Gorra_A_s_15_1.jpg
-Goora(A12)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916371/Gorra_A_s_15_0.jpg
-Gorra(A13)	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916370/Gorra_A_16.jpg
+Gorra A	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916390/Gorra_A_16_3.jpg
+Gorra A	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916389/Gorra_A_16_2.jpg
+Gorra A	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916387/Gorra_A_16_1.1.jpg
+Gorra A	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916386/Gorra_A_15.jpg
+Gorra A	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916385/Gorra_A_15_3.jpg
+Gorra A	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916382/Gorra_A_15_2.jpg
+Gorra A	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916379/Gorra_A_15_1.1.jpg
+Gorra A	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916377/Gorra_A_s_16.jpg
+Gorra A	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916376/Gorra_A_s_15.jpg
+Gorra A	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916374/Gorra_A_s_15_2.jpg
+Gorra A	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916373/Gorra_A_s_15_1.jpg
+Goora A	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916371/Gorra_A_s_15_0.jpg
+Gorra A	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916370/Gorra_A_16.jpg
 Gorra Apostar o morir	21	https://res.cloudinary.com/wstd8asg/image/upload/v1786916436/Gorra_Apostar_o_morir_21.jpg
 Gorra Astros	16	https://res.cloudinary.com/wstd8asg/image/upload/v1786916475/Gorra_Astros_16.jpg
-Gorra B1 (Bstars)	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916589/Gorra_B_15_1.1.jpg
-Gorra B2	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916586/Gorra_B_15_1.jpg
-Gorra B3	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916584/Gorra_B_15.jpg
-Gorra B4	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916581/Gorra_H_Star_15.jpg
-Gorra B5	24.5	https://res.cloudinary.com/wstd8asg/image/upload/v1786916578/Gorra_BBB_24.5.jpg
-Gorra B6	25	https://res.cloudinary.com/wstd8asg/image/upload/v1786916578/Gorra_BBB_24.5.jpg
-Gorra B7	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916568/Gorra_B_15_3.jpg
-Gorra B8	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916565/Gorra_B_15_2.0.jpg
-Gorra B9	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916562/Gorra_B_15_2.jpg
+Gorra B Stars	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916589/Gorra_B_15_1.1.jpg
+Gorra B	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916586/Gorra_B_15_1.jpg
+Gorra B	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916584/Gorra_B_15.jpg
+Gorra B	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916581/Gorra_H_Star_15.jpg
+Gorra B	24.5	https://res.cloudinary.com/wstd8asg/image/upload/v1786916578/Gorra_BBB_24.5.jpg
+Gorra B	25	https://res.cloudinary.com/wstd8asg/image/upload/v1786916578/Gorra_BBB_24.5.jpg
+Gorra B	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916568/Gorra_B_15_3.jpg
+Gorra B	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916565/Gorra_B_15_2.0.jpg
+Gorra B	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786916562/Gorra_B_15_2.jpg
 Gorra Baez	26.5	https://res.cloudinary.com/wstd8asg/image/upload/v1786916658/GORRA_BAEZ_X_MAESTRO_SHIFU_26.50.jpg
 Gorra Barbas Hats	40	https://res.cloudinary.com/wstd8asg/image/upload/v1786918002/Gorra_Barba_Hats_40_2.jpg
 Gorra Barbas Hats	40	https://res.cloudinary.com/wstd8asg/image/upload/v1786917994/Gorra_Barba_Hats_40_1.jpg
@@ -228,8 +228,8 @@ Gorra Supreme	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786917852/Go
 Gorra Supreme	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786917844/Gorra_Suprime_15_2.jpg
 Gorra Supreme	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786917835/Gorra_Suprime_15_1.jpg
 Gorra Thirthly One 	40	https://res.cloudinary.com/wstd8asg/image/upload/v1786917876/Gorra_Thirty_One_40.jpg
-Gorra Tr8bol	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786917899/Gorra_Trebol_15.jpg
-Gorra Tr8bol	23	https://res.cloudinary.com/wstd8asg/image/upload/v1786917892/Gorra_trebol_23.jpg
+Gorra Trebol	15	https://res.cloudinary.com/wstd8asg/image/upload/v1786917899/Gorra_Trebol_15.jpg
+Gorra Trebol	23	https://res.cloudinary.com/wstd8asg/image/upload/v1786917892/Gorra_trebol_23.jpg
 Gorra Wstcol	30	https://res.cloudinary.com/wstd8asg/image/upload/v1786917985/Gorra_westcol_y_kris_R_30_2.jpg
 Gorra Wstcol	30	https://res.cloudinary.com/wstd8asg/image/upload/v1786917976/Gorra_westcol_y_kris_R_30_1.jpg
 Gorra Wstcol	20	https://res.cloudinary.com/wstd8asg/image/upload/v1786917968/Gorra_Westcol_y_Bleesd_20.jpg
