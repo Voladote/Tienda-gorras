@@ -380,16 +380,7 @@ function openModal(productId) {
     }
     
     document.getElementById('modal-title').textContent = product.name;
-    
-    let categoryName = "";
-    if(product.category === 'sports') categoryName = "Deportes";
-    if(product.category === 'religious') categoryName = "Religión";
-    if(product.category === 'premium') categoryName = "Marcas Premium";
-    if(product.category === 'collab') categoryName = "Colaboraciones";
-    if(product.category === 'casino') categoryName = "Casino";
-    if(product.category === 'urban') categoryName = "Urbano";
-    
-    modalCategory.textContent = categoryName;
+    modalCategory.textContent = "Colección Top Style";
     modalPrice.textContent = `$${product.price.toFixed(2)}`;
     document.querySelector('.modal-description').textContent = product.desc;
 
@@ -542,6 +533,137 @@ checkoutButton.addEventListener('click', () => {
         toggleCart();
     });
 });
+
+
+// Asistente de compra Top Style IA
+const assistant = document.getElementById('shopping-assistant');
+const assistantToggle = document.getElementById('assistant-toggle');
+const assistantClose = document.getElementById('assistant-close');
+const assistantPanel = assistant?.querySelector('.assistant-panel');
+const assistantMessages = document.getElementById('assistant-messages');
+const assistantForm = document.getElementById('assistant-form');
+const assistantInput = document.getElementById('assistant-input');
+const assistantSuggestions = document.querySelectorAll('[data-assistant]');
+
+function toggleAssistant(force) {
+    if (!assistant || !assistantPanel) return;
+    const open = typeof force === 'boolean' ? force : !assistant.classList.contains('open');
+    assistant.classList.toggle('open', open);
+    assistantToggle?.setAttribute('aria-expanded', String(open));
+    assistantPanel.setAttribute('aria-hidden', String(!open));
+    if (open) setTimeout(() => assistantInput?.focus(), 120);
+}
+
+assistantToggle?.addEventListener('click', () => toggleAssistant());
+assistantClose?.addEventListener('click', () => toggleAssistant(false));
+
+function addAssistantMessage(text, type = 'bot') {
+    if (!assistantMessages) return;
+    const message = document.createElement('div');
+    message.className = `assistant-message ${type}`;
+    message.innerHTML = type === 'bot'
+        ? `<span class="message-avatar"><i class="ph ph-sparkle"></i></span><div>${text}</div>`
+        : `<div>${text}</div>`;
+    assistantMessages.appendChild(message);
+    assistantMessages.scrollTop = assistantMessages.scrollHeight;
+}
+
+function money(value) {
+    return `$${Number(value).toFixed(2)}`;
+}
+
+function recommendProducts(message) {
+    const text = message.toLowerCase();
+    let matches = [...products];
+
+    const budgetMatch = text.match(/(?:\$|usd|dólares?|presupuesto|máximo|maximo|menos de|hasta)\s*(\d+(?:[.,]\d+)?)/i);
+    if (budgetMatch) {
+        const budget = parseFloat(budgetMatch[1].replace(',', '.'));
+        matches = matches.filter(p => p.price <= budget);
+    }
+
+    if (/barat|económ|menos|presupuesto|precio bajo|low/i.test(text)) {
+        matches.sort((a, b) => a.price - b.price);
+    } else if (/cara|premium|exclusiv|lujo/i.test(text)) {
+        matches.sort((a, b) => b.price - a.price);
+    }
+
+    const keywordGroups = [
+        { re: /deport|nba|baseball|boston|york|la |bulls|raiders|astros/i, terms: ['sports', 'new york', 'la', 'boston', 'bulls', 'raiders', 'astros'] },
+        { re: /colab|artista|natanael|wstcol|muratravis|baez|richard/i, terms: ['natanael', 'wstcol', 'muratravis', 'baez', 'richard'] },
+        { re: /cartas|casino|ruleta|apostar/i, terms: ['cartas', 'ruleta', 'apostar'] },
+        { re: /relig|santa|judas|cruz|dios|oveja/i, terms: ['san judas', 'santa', 'cruces', 'dios', 'oveja'] }
+    ];
+
+    const group = keywordGroups.find(g => g.re.test(text));
+    if (group) {
+        const specific = matches.filter(p => group.terms.some(term => p.name.toLowerCase().includes(term)));
+        if (specific.length) matches = specific;
+    }
+
+    return matches.slice(0, 3);
+}
+
+function assistantReply(message) {
+    const text = message.toLowerCase();
+
+    if (/cómo compro|como compro|comprar|pedido|pago|finalizar|checkout|instagram|ig|dm/i.test(text)) {
+        return `Facilísimo 👌 Elige una o varias gorras, añádelas al carrito y pulsa <strong>“Finalizar pedido”</strong>. Te prepararé el mensaje con tu pedido y te llevaré al Instagram oficial <strong>@top.style.cap</strong> para confirmar disponibilidad y pago.`;
+    }
+
+    if (/hola|hey|buenas|ayuda|ayúdame|ayudame/i.test(text)) {
+        return `¡Claro! 😎 Puedo ayudarte a encontrar modelos por <strong>precio, estilo o nombre</strong>. Por ejemplo: “quiero algo de menos de $20” o “busco una deportiva”.`;
+    }
+
+    if (/instagram|ig|redes|tiktok/i.test(text)) {
+        return `Nuestro Instagram es <strong>@top.style.cap</strong>. Desde ahí puedes hablar directamente con Top Style y confirmar tu compra. También tienes el botón de Instagram aquí abajo.`;
+    }
+
+    const recommendations = recommendProducts(message);
+    if (recommendations.length) {
+        const names = recommendations.map(p => `<strong>${p.name}</strong> — ${money(p.price)}`).join('<br>');
+        return `Mira estas opciones que encontré para ti 👇<br>${names}<br><br>Si alguna te gusta, toca su tarjeta para verla y añadirla al carrito.`;
+    }
+
+    const exact = products.find(p => p.name.toLowerCase().includes(text.trim()));
+    if (exact) {
+        return `Encontré <strong>${exact.name}</strong> por <strong>${money(exact.price)}</strong>. Puedes buscarla en el catálogo o decirme “añádela” y te indico el siguiente paso.`;
+    }
+
+    return `Puedo afinar la búsqueda si me das una pista. Prueba con <strong>“menos de $20”</strong>, <strong>“quiero algo deportivo”</strong>, <strong>“busco una colaboración”</strong> o dime el nombre de una gorra.`;
+}
+
+function handleAssistantMessage(text) {
+    const clean = text.trim();
+    if (!clean) return;
+
+    addAssistantMessage(clean, 'user');
+
+    const lower = clean.toLowerCase();
+    const addMatch = lower.match(/(?:añade|anade|agrega|mete|quiero)\s+(?:la\s+)?(.+)/i);
+    if (addMatch && /añade|anade|agrega|mete/.test(lower)) {
+        const product = products.find(p => p.name.toLowerCase().includes(addMatch[1].trim()));
+        if (product) {
+            addToCart(product.id);
+            addAssistantMessage(`Listo 😎 Añadí <strong>${product.name}</strong> al carrito por ${money(product.price)}. Cuando quieras, abre el carrito y finaliza tu pedido por Instagram.`);
+            return;
+        }
+    }
+
+    setTimeout(() => addAssistantMessage(assistantReply(clean)), 220);
+}
+
+assistantForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = assistantInput?.value || '';
+    if (assistantInput) assistantInput.value = '';
+    handleAssistantMessage(text);
+});
+
+assistantSuggestions.forEach(button => {
+    button.addEventListener('click', () => handleAssistantMessage(button.dataset.assistant || ''));
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
     renderCatalog();
