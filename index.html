@@ -53,21 +53,29 @@
             <a href="#catalog" class="cta-button glow-on-hover">Ver Catálogo</a>
         </div>
     </section>
-
-    <!-- Filtros de Categorías -->
-    <section class="filters-section reveal">
-        <div class="filters-container">
-            <button class="filter-btn active" data-filter="all">Todas</button>
-            <button class="filter-btn" data-filter="sports">Deportes</button>
-            <button class="filter-btn" data-filter="religious">Religión</button>
-            <button class="filter-btn" data-filter="premium">Marcas Premium</button>
-            <button class="filter-btn" data-filter="collab">Colaboraciones</button>
-            <button class="filter-btn" data-filter="casino">Casino</button>
-            <button class="filter-btn" data-filter="urban">Urbano</button>
+    <!-- Herramientas del catálogo -->
+    <section class="catalog-tools reveal">
+        <div class="catalog-tools-inner">
+            <div class="catalog-intro">
+                <span class="catalog-eyebrow">COLECCIÓN COMPLETA</span>
+                <strong>Todas las gorras</strong>
+                <span id="catalog-count" class="catalog-count"></span>
+            </div>
+            <div class="catalog-actions">
+                <label class="catalog-search">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input id="product-search" type="search" placeholder="Buscar una gorra..." autocomplete="off">
+                </label>
+                <select id="product-sort" class="catalog-sort" aria-label="Ordenar catálogo">
+                    <option value="featured">Destacadas</option>
+                    <option value="price-low">Precio: menor a mayor</option>
+                    <option value="price-high">Precio: mayor a menor</option>
+                    <option value="name">Nombre: A-Z</option>
+                </select>
+            </div>
         </div>
     </section>
-
-    <!-- Catálogo de Productos -->
+<!-- Catálogo de Productos -->
     <section id="catalog" class="catalog-section">
         <h2 class="section-title reveal">Colección <span class="text-gradient">Premium</span></h2>
         <div id="product-grid" class="product-grid">
@@ -82,6 +90,56 @@
             <p>Seleccionamos cuidadosamente los modelos más exclusivos y demandados del mercado para que siempre luzcas increíble y destaques a donde vayas.</p>
         </div>
     </section>
+
+
+    <!-- Asistente de compra -->
+    <div id="shopping-assistant" class="shopping-assistant">
+        <button id="assistant-toggle" class="assistant-toggle" aria-label="Abrir asistente de compra" aria-expanded="false">
+            <span class="assistant-avatar"><i class="ph ph-sparkle"></i></span>
+            <span class="assistant-toggle-text">
+                <strong>Top Style IA</strong>
+                <small>Te ayudo a elegir</small>
+            </span>
+            <i class="ph ph-chat-circle-dots"></i>
+        </button>
+
+        <div class="assistant-panel" aria-hidden="true">
+            <div class="assistant-head">
+                <div>
+                    <span class="assistant-status"><span></span> Asistente de compra</span>
+                    <h3>¿Buscamos tu gorra?</h3>
+                </div>
+                <button id="assistant-close" class="assistant-close" aria-label="Cerrar asistente">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+
+            <div id="assistant-messages" class="assistant-messages">
+                <div class="assistant-message bot">
+                    <span class="message-avatar"><i class="ph ph-sparkle"></i></span>
+                    <div>¡Ey! 👋 Soy tu asistente de Top Style. Dime qué estilo buscas, tu presupuesto o el nombre de una gorra y te guío.</div>
+                </div>
+            </div>
+
+            <div class="assistant-suggestions">
+                <button data-assistant="Quiero algo barato">💸 Algo económico</button>
+                <button data-assistant="Quiero una gorra deportiva">🏀 Deportiva</button>
+                <button data-assistant="Quiero una colaboración">⭐ Colaboración</button>
+                <button data-assistant="¿Cómo compro?">🛍️ ¿Cómo compro?</button>
+            </div>
+
+            <form id="assistant-form" class="assistant-form">
+                <input id="assistant-input" type="text" placeholder="Escribe aquí..." autocomplete="off">
+                <button type="submit" aria-label="Enviar mensaje"><i class="ph ph-paper-plane-tilt"></i></button>
+            </form>
+
+            <a class="assistant-instagram" href="https://www.instagram.com/top.style.cap/" target="_blank" rel="noopener">
+                <i class="ph ph-instagram-logo"></i>
+                <span>Hablar por Instagram</span>
+                <i class="ph ph-arrow-up-right"></i>
+            </a>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer id="about" class="footer reveal">
@@ -115,7 +173,7 @@
                 <span>Total:</span>
                 <span id="total-price">$0.00</span>
             </div>
-            <button id="checkout-button" class="checkout-button glow-on-hover">Proceder al Pago</button>
+            <button id="checkout-button" class="checkout-button glow-on-hover">Finalizar pedido</button>
         </div>
     </aside>
 
