@@ -283,7 +283,11 @@ const totalPriceEl = document.getElementById('total-price');
 const toastContainer = document.getElementById('toast-container');
 const checkoutButton = document.getElementById('checkout-button');
 const header = document.querySelector('.header');
-const filterBtns = document.querySelectorAll('.filter-btn');
+
+// Herramientas del catálogo
+const searchInput = document.getElementById('product-search');
+const sortSelect = document.getElementById('product-sort');
+const catalogCount = document.getElementById('catalog-count');
 
 // Modal Elementos
 const modalOverlay = document.getElementById('quick-view-modal');
@@ -314,27 +318,63 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
-// Inicializar el catálogo
-function renderCatalog(filter = 'all') {
-    productGrid.innerHTML = ''; 
-    
-    const filteredProducts = filter === 'all' 
-        ? products 
-        : products.filter(p => p.category === filter);
+// Catálogo: "Todas", búsqueda y ordenamiento
+function getCatalogProducts() {
+    const term = (searchInput?.value || '').trim().toLowerCase();
 
-    filteredProducts.forEach((product, index) => {
+    let result = products.filter(product => {
+        if (!term) return true;
+
+        return (
+            product.name.toLowerCase().includes(term) ||
+            product.price.toString().includes(term)
+        );
+    });
+
+    const sort = sortSelect?.value || 'featured';
+
+    if (sort === 'price-low') {
+        result.sort((a, b) => a.price - b.price);
+    } else if (sort === 'price-high') {
+        result.sort((a, b) => b.price - a.price);
+    } else if (sort === 'name') {
+        result.sort((a, b) =>
+            a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
+        );
+    }
+
+    return result;
+}
+
+function renderCatalog() {
+    if (!productGrid) return;
+
+    productGrid.innerHTML = '';
+
+    const visibleProducts = getCatalogProducts();
+
+    if (catalogCount) {
+        catalogCount.textContent =
+            `${visibleProducts.length} ${visibleProducts.length === 1 ? 'modelo' : 'modelos'}`;
+    }
+
+    if (visibleProducts.length === 0) {
+        productGrid.innerHTML = `
+            <div class="catalog-empty">
+                <i class="ph ph-magnifying-glass"></i>
+                <h3>No encontramos esa gorra</h3>
+                <p>Prueba con otro nombre o limpia la búsqueda para ver toda la colección.</p>
+                <button type="button" onclick="clearProductSearch()">Ver todas</button>
+            </div>
+        `;
+        return;
+    }
+
+    visibleProducts.forEach(product => {
         const card = document.createElement('div');
-        card.className = 'product-card reveal active'; 
-        
-        let categoryName = "";
-        if(product.category === 'sports') categoryName = "Deportes";
-        if(product.category === 'religious') categoryName = "Religión";
-        if(product.category === 'premium') categoryName = "Marcas Premium";
-        if(product.category === 'collab') categoryName = "Colaboraciones";
-        if(product.category === 'casino') categoryName = "Casino";
-        if(product.category === 'urban') categoryName = "Urbano";
+        card.className = 'product-card reveal active';
 
-        let imageHTML = product.imageUrl 
+        const imageHTML = product.imageUrl
             ? `<img src="${product.imageUrl}" alt="${product.name}" class="product-img" loading="lazy">`
             : `<i class="ph ${product.imageIcon} img-placeholder"></i>`;
 
@@ -342,26 +382,44 @@ function renderCatalog(filter = 'all') {
             <div class="product-image-container" onclick="openModal(${product.id})">
                 ${imageHTML}
             </div>
+
             <div class="product-info">
                 <h3>${product.name}</h3>
-                <span class="product-category">${categoryName}</span>
-                <div class="product-price"><span>$</span>${product.price.toFixed(2)}</div>
+                <div class="product-price">
+                    <span>$</span>${product.price.toFixed(2)}
+                </div>
             </div>
-            <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Añadir al Carrito</button>
+
+            <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                Añadir al Carrito
+            </button>
         `;
+
         productGrid.appendChild(card);
     });
 }
 
-// Filtros
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        const filterValue = e.target.getAttribute('data-filter');
-        renderCatalog(filterValue);
-    });
-});
+function clearProductSearch() {
+    if (searchInput) {
+        searchInput.value = '';
+    }
+
+    if (sortSelect) {
+        sortSelect.value = 'featured';
+    }
+
+    renderCatalog();
+}
+
+// Buscar mientras escribes
+if (searchInput) {
+    searchInput.addEventListener('input', renderCatalog);
+}
+
+// Ordenar al cambiar el selector
+if (sortSelect) {
+    sortSelect.addEventListener('change', renderCatalog);
+}
 
 // Modal Logic
 let currentModalProductId = null;
@@ -667,4 +725,5 @@ assistantSuggestions.forEach(button => {
 
 document.addEventListener('DOMContentLoaded', () => {
     renderCatalog();
+    updateCartUI();
 });
